@@ -21,7 +21,8 @@ class TodoController extends Controller
 
 	public function store(Request $request)
 	{
-		$input = $request->all();
+		$inputs = $request->all();
+		
 
 		// 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
     		$todo = new Todo(); 
