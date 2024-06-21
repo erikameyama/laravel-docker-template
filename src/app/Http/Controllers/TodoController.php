@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Todo;
 
@@ -10,7 +11,6 @@ class TodoController extends Controller
 	{
 		$todo = new Todo();
 		$todoList = $todo->all();
-		
 		return view('todo.index', ['todoList' => $todoList]);
 	}
 
@@ -21,19 +21,13 @@ class TodoController extends Controller
 
 	public function store(Request $request)
 	{
-		$inputs = $request->all();
-		
+			$inputs = $request->all();
 
-		// 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-    		$todo = new Todo(); 
-		
-		// 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-		$todo->user_id = Auth::id();
-		$todo->fill($inputs);
-		
-		// 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
-		$todo->save();
+			$todo = new Todo();
+			$todo->fill($inputs); // 変更
+			$todo->save();
 
-		return redirect()->route('todo.index');
+			dd(route('todo.index'));
+			return redirect()->route('todo.index');
 	}
 }
