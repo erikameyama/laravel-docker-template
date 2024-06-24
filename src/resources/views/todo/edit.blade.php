@@ -5,22 +5,19 @@
     <div class="card">
       <div class="card-header">ToDo編集</div>
       <div class="card-body">
-        <form method="POST" action="">
-          @csrf
-          <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="content" value="{{ $todo->content }}">
-            </div>
+      <form method="POST" action="{{ route('todo.update', $todo->id) }}"> <!-- action属性を追加 -->
+        @csrf
+        @method('PUT') <!-- ここを追加 -->
+        <div class="form-group row">
+          <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" name="content" value="{{ $todo->content }}">
           </div>
-          <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary">更新</button>
-            </div>
+        </div>
+        <div class="form-group row mb-0">
+          <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-primary">更新</button>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
+      </form>
 @endsection
